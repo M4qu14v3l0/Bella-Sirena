@@ -1,6 +1,7 @@
 let vino = [
     {color : {rosado : 35 , blanco : 45 , tinto : 50}},
     {azucar: {seco : 29 , abocado : 24  , dulce : 60}}
+
 ]
 let ron = [
     {color : {blanco : 30 , dorado : 40 , negro : 60}},
@@ -36,9 +37,11 @@ for(const i in ron[1].procedencia){
 
 
 const categorySelected = () => {
-    category =  prompt(`Estas son las categorías de tragos disponible, selecciona alguna: \n1 -> VINOS - color\n2 -> VINOS - azucar\n3 -> RON - color\n4 -> RON - procedencia`);
-    return chooseCategory(category);
+    category =  prompt(`Estas son las categorías de tragos disponible, selecciona alguna: \n1 -> VINOS - color\n2 -> VINOS - azucar\n3 -> RON - color\n4 -> RON - procedencia\n5 -> filtrar // buscar`);
+    if(category == 5){filterDrink(category)}
+    else{chooseCategory(category)}
 }
+
 
 const chooseCategory = (category) => {
 
@@ -48,12 +51,9 @@ const chooseCategory = (category) => {
 
     switch(category){
 
-
-
         case '1':
         
             while(value){
-                console.log('entró')
                 wineSelected = prompt(`Escoje los vinos de color para añadir al carrito  \nrosado\nblanco\ntinto\ncambio -> cambiar de categoría\nsalir -> terminar de comprar\nTOTAL: ${total}`)
                 if(wineSelected != 'cambio' && wineSelected != 'salir'){
                     price = vino[0].color[wineSelected] 
@@ -64,8 +64,6 @@ const chooseCategory = (category) => {
                     value = false;
                 }
             }
-
-            
 
         case '2':
 
@@ -117,18 +115,58 @@ const chooseCategory = (category) => {
                 }
             }
 
+        case '5':
+
+            filterDrink()
+
 
     totalPagar.innerText = `Tu total a pagar es de: s/.${total}`
     }
 }
 
 
-// const showCategory = () => {
 
-//     selectCategory = prompt(`Estas son las categorías de tragos disponible, selecciona alguna: \n1 -> VINOS - color\n2 -> VINOS - azucar\n3 -> RON - color\n4 -> RON - procedencia`);
-//     return chooseCategory(selectCategory);
-// }
 
+
+const filterDrink = () => {
+    
+    consult =  prompt(`Consúltanos acerca de qué bebida quieres, el sistema te dirá si está en stock, estas son tus opciones:\n VINO\n RON\n (Ejemplo de búsqueda: "vino" )`);
+
+    if(consult == "vino"){
+        vinoConsult =  prompt(`¿existen vinos de: color , crianza, azucar , temporada?`);
+
+            let result = vino.filter((element) => element.vinoConsult )
+
+            console.log(result)
+
+
+            let resultA = vino.filter( (e) => e.color)
+
+            console.log(resultA)
+            if(result.length > 0){
+                alert('sí hay')
+            }else{
+                alert('no hay')
+            }
+        }
+    else if(consult == "ron"){
+        ronConsult =  prompt(`¿existen ron de: color , espesor, procedencia , temporada?`);
+
+            let result = ron.filter((element) => element.ronConsult )
+
+            if(result.length > 0){
+                alert('sí hay')
+            }else{
+                alert('no hay')
+            }
+        }
+    else{
+        alert('Esa bebida no está disponible')
+    }
+
+    }
 
 start()
 
+
+//console.log(result)
