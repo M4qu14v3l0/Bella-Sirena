@@ -12,6 +12,10 @@ let total = 0
 
 let totalPagar = document.querySelector('#total')
 
+let startProgram = document.querySelector('#buttonStart')
+startProgram.addEventListener('click', s = () => {
+    start()
+})
 
 
 
@@ -27,6 +31,7 @@ for(const i in ron[0].color){
 for(const i in ron[1].procedencia){
    document.write(` RON-procedencia: ${i} PRECIO: s/.${ron[1].procedencia[i]} <br>`);
 }
+
 
 
  const start = () => {
@@ -64,6 +69,7 @@ const chooseCategory = (category) => {
                     value = false;
                 }
             }
+            break
 
         case '2':
 
@@ -80,6 +86,7 @@ const chooseCategory = (category) => {
                     value = false;
                 }
             }
+            break
     
         case '3':
 
@@ -98,6 +105,7 @@ const chooseCategory = (category) => {
                     value = false;
                 }
             }
+            break
 
         case '4':
 
@@ -118,10 +126,9 @@ const chooseCategory = (category) => {
         case '5':
 
             filterDrink()
-
-
-    totalPagar.innerText = `Tu total a pagar es de: s/.${total}`
+            break
     }
+    totalPagar.innerText = `Tu total a pagar es de: s/.${total}`
 }
 
 
@@ -135,24 +142,32 @@ const filterDrink = () => {
     if(consult == "vino"){
         vinoConsult =  prompt(`¿existen vinos de: color , crianza, azucar , temporada?`);
 
-            let result = vino.filter((element) => element.vinoConsult )
+            if(vinoConsult == 'color'){
+                let result = vino.filter((element) => element.color )
 
-            console.log(result)
+                if(result.length > 0){
+                    alert('sí hay')
+                }else{
+                    alert('no hay')
+                }
+            }
+            else if(vinoConsult == 'azucar'){
+                let result = vino.filter((element) => element.azucar )
 
-
-            let resultA = vino.filter( (e) => e.color)
-
-            console.log(resultA)
-            if(result.length > 0){
-                alert('sí hay')
+                if(result.length > 0){
+                    alert('sí hay')
+                }else{
+                    alert('no hay')
+                }
             }else{
-                alert('no hay')
+                alert ('no hay')
             }
         }
     else if(consult == "ron"){
         ronConsult =  prompt(`¿existen ron de: color , espesor, procedencia , temporada?`);
 
-            let result = ron.filter((element) => element.ronConsult )
+        if(ronConsult == 'color'){
+            let result = ron.filter((element) => element.color )
 
             if(result.length > 0){
                 alert('sí hay')
@@ -160,13 +175,17 @@ const filterDrink = () => {
                 alert('no hay')
             }
         }
-    else{
-        alert('Esa bebida no está disponible')
-    }
+        else if(ronConsult == 'procedencia'){
+            let result = ron.filter((element) => element.procedencia)
+            if(result.length > 0){
+                alert('sí hay')
+            }else{
+                alert('no hay')
+            }
+        }
+        else{
+            alert('Esa bebida no está disponible')
+        }
 
     }
-
-start()
-
-
-//console.log(result)
+}
