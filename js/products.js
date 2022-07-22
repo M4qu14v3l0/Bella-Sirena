@@ -43,6 +43,17 @@ function displayProducts(product) {
 
 displayProducts(fajasData);
 
+//save products
+document.addEventListener('DOMContentLoaded' , () => {
+    if(localStorage.getItem('userCar')){
+        userCar = JSON.parse(localStorage.getItem('userCar'))
+        displayProductSelected()
+    }
+})
+
+
+
+
 //buttons Listener
 
 
@@ -67,11 +78,12 @@ const addItem = (item) => {
     item.stopPropagation()
 }
 
+
 const displayProductSelected = () => {
 
         productsSelected.innerHTML = ''
 
-        
+
         userCar.forEach(products => {
         
 
@@ -81,19 +93,70 @@ const displayProductSelected = () => {
                 <td>${products.id}</td>
                 <td>${products.name}</td>
                 <td class="quantity-car">
-                    <button>+</button>
+                    <button class = 'user-car-btn add-item' id = '${products.id}'>+</button>
                     <p>${products.quantity}</p>
-                    <button>-</button>
+                    <button class = 'user-car-btn delete-item' id = '${products.id}'>-</button>
                 </td>
-                <td>${products.price}</td>
+                <td>s/.${products.price}</td>
             </tr>
             `
             productsSelected.innerHTML += htmlProductSelected ;
             
         });
 
-        
+        localStorage.setItem('userCar', JSON.stringify(userCar))
+
     }    
+
+
+
+// add and delete item from car 
+
+productsSelected.addEventListener('click' , (e) => {
+    actionBtn(e)
+})
+
+
+
+const actionBtn = (e) => {
+
+
+
+    if(e.target.classList.contains('add-item')){
+        const tempAdd = userCar[e.target.id]
+
+        tempAdd.quantity++
+
+        userCar[e.target.id] = {...tempAdd}
+
+        //not here --> userCar[e.target.id].price *= userCar[e.target.id].quantity
+
+        displayProductSelected()
+
+    }
+
+    if(e.target.classList.contains('delete-item')){
+
+        const tempDelete = userCar[e.target.id]
+
+        tempDelete.quantity--
+
+        if(userCar[e.target.id].quantity === 0){
+            delete userCar[e.target.id]
+        }
+
+        displayProductSelected()
+
+    }
+
+
+
+
+    e.stopPropagation()
+
+}
+
+
 
 const setCar = (object) => {
 
