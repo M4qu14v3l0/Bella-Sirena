@@ -1,17 +1,58 @@
-body{
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 0;
+  margin: 0; }
 
-    padding: 0;
-    margin: 0;
+.product-fajas {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center; }
 
-   background-color: antiquewhite;
-   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
-
-}
-
-
-.content {
+.product-container {
+  height: 480px;
+  width: 250px;
+  margin: 30px 30px 0px 30px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; }
+  .product-container .product-picture img {
+    height: 320px;
+    width: 100%; }
+  .product-container .product-data {
     display: flex;
     flex-direction: column;
-    margin: 0px 300px 0px 300px;
-}
+    align-items: center;
+    width: 100%; }
+    .product-container .product-data h3 {
+      margin: 0px; }
+    .product-container .product-data p {
+      margin: 0px; }
+  .product-container .product-car {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    height: 30px; }
+  .product-container .car-button {
+    border: 0;
+    border-radius: 10%;
+    margin-top: 10px;
+    height: 40px;
+    width: 100px;
+    background-color: #e65f5f;
+    color: whitesmoke;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    cursor: pointer; }
+
+.selected-products {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px; }
+  .selected-products .quantity-car {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20px; }
