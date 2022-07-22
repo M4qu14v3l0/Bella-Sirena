@@ -1,6 +1,8 @@
 //variables
 const containerProducts = document.querySelector('#product__fajas')
 const buttonListener = document.getElementsByClassName('car-button')
+const productsSelected = document.querySelector('#products__selected')
+
 const userCar = [
     
 ]
@@ -12,8 +14,6 @@ const fajasData = [
     {id : 4 ,  name : 'Calzón faja clásico' , price : 200 , rate : 2.5 , img : 'https://res.cloudinary.com/leonisa/image/upload/q_auto,f_auto,w_140,dpr_2/assets/1/14/dimlarge/012903_382_1200x1500_2022_2.jpg'},
     {id : 3 ,  name : 'Calzón faja postparto' , price : 160 , rate : 3.5 , img : 'https://res.cloudinary.com/leonisa/image/upload/q_auto,f_auto,w_140,dpr_2/assets/1/14/dimlarge/012885_802_1200x1500_usa_2.jpg'}
 ];
-
-
 
 //methods
 
@@ -58,9 +58,37 @@ for (var i = 0 ; i < buttonListener.length; i++) {
 const addItem = (item) => {
     if(item.target.classList.contains('car-button')){
         setCar(item.target.parentElement)
+
+        item.target.setAttribute('disabled' , '');
+        item.target.classList.add('block-button');
+        item.target.innerText = 'EN CARRITO';
+
     }
     item.stopPropagation()
 }
+
+const displayProductSelected = (object) => {
+
+        let screenPrint;
+
+        screenPrint = userCar[object]
+
+        let htmlProductSelected = 
+        `
+        <tr>
+            <td>${screenPrint.id}</td>
+            <td>${screenPrint.name}</td>
+            <td class="quantity-car">
+                <button>+</button>
+                <p>${screenPrint.quantity}</p>
+                <button>-</button>
+            </td>
+            <td>${screenPrint.price}</td>
+        </tr>
+        `
+        productsSelected.innerHTML += htmlProductSelected ;
+    }    
+
 
 const setCar = (object) => {
 
@@ -73,16 +101,14 @@ const setCar = (object) => {
 
     if(userCar.hasOwnProperty(products.id)){
         products.quantity = userCar[products.id].quantity + 1
+
     }
 
     userCar[products.id] = {...products}
 
-    console.log(userCar)
+    displayProductSelected(products.id)
 }
 
-const displayProductSelected = (product) => {
-
-}
 
 
 
