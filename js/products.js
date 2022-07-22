@@ -67,28 +67,33 @@ const addItem = (item) => {
     item.stopPropagation()
 }
 
-const displayProductSelected = (object) => {
+const displayProductSelected = () => {
 
-        let screenPrint;
+        productsSelected.innerHTML = ''
 
-        screenPrint = userCar[object]
+        
+        userCar.forEach(products => {
+        
 
-        let htmlProductSelected = 
-        `
-        <tr>
-            <td>${screenPrint.id}</td>
-            <td>${screenPrint.name}</td>
-            <td class="quantity-car">
-                <button>+</button>
-                <p>${screenPrint.quantity}</p>
-                <button>-</button>
-            </td>
-            <td>${screenPrint.price}</td>
-        </tr>
-        `
-        productsSelected.innerHTML += htmlProductSelected ;
+            let htmlProductSelected = 
+            `
+            <tr>
+                <td>${products.id}</td>
+                <td>${products.name}</td>
+                <td class="quantity-car">
+                    <button>+</button>
+                    <p>${products.quantity}</p>
+                    <button>-</button>
+                </td>
+                <td>${products.price}</td>
+            </tr>
+            `
+            productsSelected.innerHTML += htmlProductSelected ;
+            
+        });
+
+        
     }    
-
 
 const setCar = (object) => {
 
@@ -106,7 +111,7 @@ const setCar = (object) => {
 
     userCar[products.id] = {...products}
 
-    displayProductSelected(products.id)
+    displayProductSelected()
 }
 
 
