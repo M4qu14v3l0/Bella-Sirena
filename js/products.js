@@ -86,21 +86,24 @@ const displayProductSelected = () => {
 
         userCar.forEach(products => {
         
-
-            let htmlProductSelected = 
-            `
-            <tr>
-                <td>${products.id}</td>
-                <td>${products.name}</td>
-                <td class="quantity-car">
-                    <button class = 'user-car-btn add-item' id = '${products.id}'>+</button>
-                    <p>${products.quantity}</p>
-                    <button class = 'user-car-btn delete-item' id = '${products.id}'>-</button>
-                </td>
-                <td>s/.${products.price}</td>
-            </tr>
-            `
-            productsSelected.innerHTML += htmlProductSelected ;
+            if(products === null){
+                return
+            }else{
+                let htmlProductSelected = 
+                `
+                <tr>
+                    <td>${products.id}</td>
+                    <td>${products.name}</td>
+                    <td class="quantity-car">
+                        <button class = 'user-car-btn add-item' id = '${products.id}'>+</button>
+                        <p>${products.quantity}</p>
+                        <button class = 'user-car-btn delete-item' id = '${products.id}'>-</button>
+                    </td>
+                    <td>s/.${products.price}</td>
+                </tr>
+                `
+                productsSelected.innerHTML += htmlProductSelected ;
+            }
         });
 
         localStorage.setItem('userCar', JSON.stringify(userCar))
