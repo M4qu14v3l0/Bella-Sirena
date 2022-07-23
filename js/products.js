@@ -3,7 +3,7 @@ const containerProducts = document.querySelector('#product__fajas')
 const buttonListener = document.getElementsByClassName('car-button')
 const productsSelected = document.querySelector('#products__selected')
 
-const userCar = [
+let userCar = [
     
 ]
 
@@ -101,11 +101,9 @@ const displayProductSelected = () => {
             </tr>
             `
             productsSelected.innerHTML += htmlProductSelected ;
-            
         });
 
         localStorage.setItem('userCar', JSON.stringify(userCar))
-
     }    
 
 
