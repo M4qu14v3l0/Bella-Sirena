@@ -8,23 +8,12 @@ let userCar = [
     
 ]
 
-
-// const fajasData = [
-//     {id : 0 ,  name : 'Faja Cinturilla' , price : 179 , rate : 4.5 , img : 'https://res.cloudinary.com/leonisa/image/upload/q_auto,f_auto,w_140,dpr_2/assets/1/14/dimlarge/015791_700_1200x1500_usa_1.jpg'},
-//     {id : 1 ,  name : 'Faja Body' , price : 180 , rate : 5 , img : 'https://res.cloudinary.com/leonisa/image/upload/q_auto,f_auto,w_140,dpr_2/assets/1/14/dimlarge/018472_802_1200x1500_usa_2.jpg'},
-//     {id : 2 ,  name : 'Faja Estilo Body' , price : 123 , rate : 4.1 , img : 'https://res.cloudinary.com/leonisa/image/upload/q_auto,f_auto,w_140,dpr_2/assets/1/14/dimlarge/018678n_700_1200x1500_2021_2.jpg'},
-//     {id : 4 ,  name : 'Calzón faja clásico' , price : 200 , rate : 2.5 , img : 'https://res.cloudinary.com/leonisa/image/upload/q_auto,f_auto,w_140,dpr_2/assets/1/14/dimlarge/012903_382_1200x1500_2022_2.jpg'},
-//     {id : 3 ,  name : 'Calzón faja postparto' , price : 160 , rate : 3.5 , img : 'https://res.cloudinary.com/leonisa/image/upload/q_auto,f_auto,w_140,dpr_2/assets/1/14/dimlarge/012885_802_1200x1500_usa_2.jpg'}
-// ];
-
 //fetch
 
 const displayProducts = async () =>{
 
     const res = await fetch('../data/fajas_data.json')
     const data = await res.json()
-
-
 
     for(products of data){
         let html =  
@@ -52,15 +41,17 @@ const displayProducts = async () =>{
                 //notification
                 Toastify({
                     text: "Añadido",
-                    duration: 3000,
+                    duration: 1500,
                     // destination: "https://github.com/apvarun/toastify-js",
                     newWindow: true,
-                    close: true,
+                    close: false,
                     gravity: "top", // `top` or `bottom`
                     position: "right", // `left`, `center` or `right`
                     stopOnFocus: true, // Prevents dismissing of toast on hover
                     style: {
-                    background: "black",
+                    color: "black",
+                    background: "antiquewhite",
+
                     },
                     // onClick: function(){} // Callback after click
                 }).showToast();
@@ -102,10 +93,10 @@ const displayProductSelected = () => {
 
 
 
-    const carQuantity = userCar.reduce((acc , {quantity}) => acc + quantity , 0)
-    console.log(carQuantity)
-    console.log('----------------------')
-    const carTotal = userCar.reduce((acc,{quantity , price}) => acc + (quantity * price), 0)
+    // const carQuantity = userCar.reduce((acc , {quantity}) => acc + quantity , 0)
+    // console.log(carQuantity)
+    // console.log('----------------------')
+    const carTotal = userCar.filter((x) => x !== null).reduce((acc,{quantity , price}) => acc + (quantity * price), 0)
     console.log(carTotal)
 
     totalPriceProducts.innerHTML = `Total: ${carTotal}`
@@ -148,9 +139,12 @@ const displayProductSelected = () => {
 
 //save products
 document.addEventListener('DOMContentLoaded' , () => {
+
     if(localStorage.getItem('userCar')){
         userCar = JSON.parse(localStorage.getItem('userCar'))
         displayProductSelected()
+    }else{
+        userCar = []
     }
 })
  
@@ -184,10 +178,9 @@ const setCar = (object) => {
 
     if(userCar.hasOwnProperty(products.id)){
         products.quantity = userCar[products.id].quantity + 1
-
+    }else{
+        userCar[products.id] = {...products}
     }
-
-    userCar[products.id] = {...products}
 
     displayProductSelected()
 }
@@ -236,11 +229,3 @@ const actionBtn = (e) => {
 
     e.stopPropagation()
 }
-
-
-
-
-
-
-
-
