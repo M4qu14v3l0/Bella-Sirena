@@ -112,7 +112,7 @@ const displayProductSelected = () => {
 
 
 
-    // localStorage.setItem('userCar', JSON.stringify(userCar))
+    localStorage.setItem('userCar', JSON.stringify(userCar))
 }    
 
 //--------------old code------------------------
@@ -147,12 +147,12 @@ const displayProductSelected = () => {
 //storage
 
 //save products
-// document.addEventListener('DOMContentLoaded' , () => {
-//     if(localStorage.getItem('userCar')){
-//         userCar = JSON.parse(localStorage.getItem('userCar'))
-//         displayProductSelected()
-//     }
-// })
+document.addEventListener('DOMContentLoaded' , () => {
+    if(localStorage.getItem('userCar')){
+        userCar = JSON.parse(localStorage.getItem('userCar'))
+        displayProductSelected()
+    }
+})
  
 
 
