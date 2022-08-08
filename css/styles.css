@@ -1,7 +1,22 @@
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Rubik', sans-serif;
   padding: 0;
-  margin: 0; }
+  margin: 0;
+  background-image: url("../img/bg/bg.jpg"); }
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 70px 0px 70px;
+  background-color: black;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; }
+  nav h1 {
+    color: antiquewhite; }
+  nav .fa-basket-shopping {
+    font-size: 30px;
+    color: antiquewhite; }
 
 .product-fajas {
   width: 100%;
@@ -13,6 +28,7 @@ body {
 .product-container {
   height: 480px;
   width: 250px;
+  background-color: antiquewhite;
   margin: 30px 30px 0px 30px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   display: flex;
@@ -46,13 +62,14 @@ body {
     color: whitesmoke;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     cursor: pointer; }
-  .product-container .block-button {
-    background-color: whitesmoke;
-    color: black; }
 
 .selected-products {
+  width: 300px;
+  background-color: antiquewhite;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   text-align: center;
   margin-top: 30px; }
   .selected-products .quantity-car {
@@ -60,3 +77,15 @@ body {
     align-items: center;
     justify-content: center;
     height: 20px; }
+
+.user-car-btn {
+  background-color: #e65f5f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  width: 20px;
+  font-size: 20px;
+  border: 0px;
+  border-radius: 50%;
+  margin: 0px 10px 0px 10px; }
