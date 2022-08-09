@@ -12,7 +12,7 @@ let userCar = [
 
 const displayProducts = async () =>{
 
-    const res = await fetch('/data/fajas_data.json')
+    const res = await fetch('../data/fajas_data.json')
     const data = await res.json()
 
     for(products of data){
