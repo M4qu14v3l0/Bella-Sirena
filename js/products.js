@@ -36,13 +36,12 @@ const displayProducts = async () =>{
         //buttons Listener
 
 
-        for (var i = 0 ; i < buttonListener.length; i++) {
+        for (let i = 0 ; i < buttonListener.length; i++) {
             buttonListener[i].addEventListener('click' , (e) => {
                 //notification
                 Toastify({
                     text: "Añadido",
-                    duration: 1500,
-                    // destination: "https://github.com/apvarun/toastify-js",
+                    duration: 2000,
                     newWindow: true,
                     close: false,
                     gravity: "top", // `top` or `bottom`
@@ -53,10 +52,9 @@ const displayProducts = async () =>{
                     background: "antiquewhite",
 
                     },
-                    // onClick: function(){} // Callback after click
+                    onClick: addItem(e) // Callback after click
                 }).showToast();
 
-                addItem(e)
             }) ; 
         }
     }
@@ -93,8 +91,8 @@ const displayProductSelected = () => {
 
 
 
-    // const carQuantity = userCar.reduce((acc , {quantity}) => acc + quantity , 0)
-    // console.log(carQuantity)
+    const carQuantity = userCar.filter((x) => x !== null).reduce((acc , {quantity}) => acc + quantity , 0)
+    console.log(carQuantity)
     // console.log('----------------------')
     const carTotal = userCar.filter((x) => x !== null).reduce((acc,{quantity , price}) => acc + (quantity * price), 0)
     console.log(carTotal)
@@ -176,11 +174,13 @@ const setCar = (object) => {
         quantity: 1 
     }
 
-    if(userCar.hasOwnProperty(products.id)){
-        products.quantity = userCar[products.id].quantity + 1
-    }else{
-        userCar[products.id] = {...products}
+    if(userCar.hasOwnProperty(products.id) && userCar[products.id] !== null){
+        products.quantity = userCar[products.id].quantity + 1  
     }
+
+    userCar[products.id] = {...products}
+
+
 
     displayProductSelected()
 }
@@ -202,8 +202,6 @@ const actionBtn = (e) => {
         temp.quantity++
 
         userCar[e.target.id] = {...temp}
-        
-        //not here --> userCar[e.target.id].price *= userCar[e.target.id].quantity
 
         displayProductSelected()
 
